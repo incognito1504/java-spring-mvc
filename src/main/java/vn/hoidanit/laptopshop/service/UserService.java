@@ -32,4 +32,12 @@ public class UserService {
         System.out.println(Phat);
         return Phat;
     }
+
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public void deleteAUser(long id) {
+        this.userRepository.deleteById(id);
+    }
 }
