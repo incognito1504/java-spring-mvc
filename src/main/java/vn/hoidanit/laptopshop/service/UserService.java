@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.Users;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 
 @Service
@@ -19,21 +19,21 @@ public class UserService {
         return "Hello from service";
     }
 
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return this.userRepository.findAll();
     }
 
-    public List<User> getAllUsersByEmail(String email) {
+    public List<Users> getAllUsersByEmail(String email) {
         return this.userRepository.findOneByEmail(email);
     }
 
-    public User handleSave(User user) {
-        User Phat = this.userRepository.save(user);
+    public Users handleSave(Users user) {
+        Users Phat = this.userRepository.save(user);
         System.out.println(Phat);
         return Phat;
     }
 
-    public User getUserById(long id) {
+    public Users getUserById(long id) {
         return this.userRepository.findById(id);
     }
 

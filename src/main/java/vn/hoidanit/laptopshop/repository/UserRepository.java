@@ -3,18 +3,18 @@ package vn.hoidanit.laptopshop.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.Users;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User save(User DarkLord);
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Users save(Users DarkLord);
 
-    List<User> findOneByEmail(String email);
+    List<Users> findOneByEmail(String email);
 
-    List<User> findAll();
+    List<Users> findAll();
 
-    User findById(long id);
+    Users findById(long id);
 
     void deleteById(long id);
 }

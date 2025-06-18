@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.Users;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +30,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        List<User> arrUsers = this.userService.getAllUsersByEmail("dangthuanphat465@gmail.com");
+        List<Users> arrUsers = this.userService.getAllUsersByEmail("dangthuanphat465@gmail.com");
         System.out.println(arrUsers);
         model.addAttribute("eric", "test");
         model.addAttribute("hoidanit", "from controller with model");
@@ -39,7 +39,7 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
+        List<Users> users = this.userService.getAllUsers();
         model.addAttribute("users", users);
         return "admin/user/table-user";
     }
@@ -48,19 +48,19 @@ public class UserController {
     public String getUserDetailPage(Model model, @PathVariable long id) {
         System.out.println("check pack id = " + id);
         model.addAttribute("id", id);
-        User user = this.userService.getUserById(id);
+        Users user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         return "admin/user/view";
     }
 
     @RequestMapping("/admin/user/create") // GET
     public String getCreateUserPage(Model model) {
-        model.addAttribute("newUser", new User());
+        model.addAttribute("newUser", new Users());
         return "admin/user/create";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User DarkLord) {
+    public String createUserPage(Model model, @ModelAttribute("newUser") Users DarkLord) {
         System.out.println("run here" + DarkLord);
         this.userService.handleSave(DarkLord);
         return "redirect:/admin/user";
@@ -68,14 +68,14 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
-        User currentUser = this.userService.getUserById(id);
+        Users currentUser = this.userService.getUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update";
     }
 
     @PostMapping("/admin/user/update")
-    public String getUpdateUser(Model model, @ModelAttribute("newUser") User DarkLord) {
-        User currentUser = this.userService.getUserById(DarkLord.getId());
+    public String getUpdateUser(Model model, @ModelAttribute("newUser") Users DarkLord) {
+        Users currentUser = this.userService.getUserById(DarkLord.getId());
         if (currentUser != null) {
             currentUser.setAddress(DarkLord.getAddress());
             currentUser.setFullName(DarkLord.getFullName());
@@ -89,12 +89,12 @@ public class UserController {
     @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable long id) {
         model.addAttribute("id", id);
-        model.addAttribute("newUser", new User());
+        model.addAttribute("newUser", new Users());
         return "admin/user/delete";
     }
 
     @PostMapping("/admin/user/delete")
-    public String getDeleteUser(Model model, @ModelAttribute("newUser") User DarkLord) {
+    public String getDeleteUser(Model model, @ModelAttribute("newUser") Users DarkLord) {
         this.userService.deleteAUser(DarkLord.getId());
         return "redirect:/admin/user";
     }

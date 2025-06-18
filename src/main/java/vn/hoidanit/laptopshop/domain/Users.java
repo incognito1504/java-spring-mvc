@@ -1,14 +1,19 @@
 package vn.hoidanit.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-// @Table(name = "nguoi_dung")
-public class User {
+// @Table(name = "users")
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,6 +23,17 @@ public class User {
     private String fullName;
     private String address;
     private String phone;
+
+    private String avatar;
+
+    // roleId
+    // user mang -> to one -> role . Ctrl + k . press s
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Roles role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Orders> orders;
 
     public long getId() {
         return id;
@@ -67,10 +83,18 @@ public class User {
         this.phone = phone;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + "]";
+                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
 
 }
