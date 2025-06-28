@@ -19,6 +19,9 @@ public class UploadService {
     }
 
     public String handleSaveUploadFile(MultipartFile[] files, String targetFolder) {
+        if (files.length == 0) {
+            return "";
+        }
         String rootPath = this.servletContext.getRealPath("/resources/images");
         String finalName = "";
         for (int i = 0; i < files.length; i++) {
@@ -27,7 +30,7 @@ public class UploadService {
             try {
                 bytes = file.getBytes();
 
-                File dir = new File(rootPath + File.separator + "avatar");
+                File dir = new File(rootPath + File.separator + targetFolder);
                 if (!dir.exists())
                     dir.mkdirs();
 
