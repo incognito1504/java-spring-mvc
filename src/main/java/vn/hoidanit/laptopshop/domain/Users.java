@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity
 // @Table(name = "users")
@@ -26,6 +27,7 @@ public class Users {
 
     @NotNull
     @Size(min = 2, message = "Password phải có tối thiểu 2 ký tự")
+    @StrongPassword(message = "Pass phải có 8 ký tự")
     private String password;
 
     @NotNull
@@ -34,8 +36,6 @@ public class Users {
 
     private String address;
 
-    @NotNull
-    @Size(min = 10, message = "Phone phải có tối thiểu 10 ký tự")
     private String phone;
 
     private String avatar;
