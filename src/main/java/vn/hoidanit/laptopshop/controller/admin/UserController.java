@@ -1,6 +1,8 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,7 +79,7 @@ public class UserController {
         }
         // validate
         if (newUserBindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
         //
         String avatar = this.uploadService.handleSaveUploadFile(files, "avatar");

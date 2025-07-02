@@ -6,10 +6,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import vn.hoidanit.laptopshop.domain.Products;
 import vn.hoidanit.laptopshop.domain.Users;
 import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
@@ -72,4 +71,9 @@ public class HomePageController {
         return "client/auth/login";
     }
 
+    @GetMapping("/access-deny")
+    public String getDenyPage(Model model) {
+
+        return "client/auth/deny";
+    }
 }
