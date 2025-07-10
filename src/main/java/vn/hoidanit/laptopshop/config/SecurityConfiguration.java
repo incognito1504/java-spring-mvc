@@ -14,8 +14,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.session.security.web.authentication.SpringSessionRememberMeServices;
 
 import jakarta.servlet.DispatcherType;
+import vn.hoidanit.laptopshop.service.CustomUserDetailsService;
 import vn.hoidanit.laptopshop.service.UserService;
-import vn.hoidanit.laptopshop.service.validator.CustomUserDetailsService;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)

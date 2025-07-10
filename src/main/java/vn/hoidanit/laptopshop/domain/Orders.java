@@ -32,7 +32,7 @@ public class Orders {
     private Users user;
 
     @OneToMany(mappedBy = "order")
-    List<OrderDetail> orderDetails;
+    private List<OrderDetail> orderDetails;
 
     public long getId() {
         return id;
