@@ -19,7 +19,7 @@
             <body class="sb-nav-fixed">
                 <jsp:include page="../layout/header.jsp" />
                 <div id="layoutSidenav">
-                    <jsp:include page="../layout/sidebar.jsp" />
+                    <jsp:include page="../layout/slidebar.jsp" />
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
@@ -36,7 +36,6 @@
                                                 <a href="/admin/product/create" class="btn btn-primary">Create a
                                                     product</a>
                                             </div>
-
                                             <hr />
                                             <table class=" table table-bordered table-hover">
                                                 <thead>
@@ -67,14 +66,13 @@
                                                                     class="btn btn-danger">Delete</a>
                                                             </td>
                                                         </tr>
-
                                                     </c:forEach>
 
                                                 </tbody>
                                             </table>
                                             <nav aria-label="Page navigation example">
                                                 <ul class="pagination justify-content-center">
-                                                    <li class="page-item">
+                                                    <li class="page-item ">
                                                         <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
                                                             href="/admin/product?page=${currentPage - 1}"
                                                             aria-label="Previous">
@@ -99,18 +97,15 @@
                                                 </ul>
                                             </nav>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
                     </div>
-                </div>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                    crossorigin="anonymous"></script>
-                <script src="/js/scripts.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                        crossorigin="anonymous"></script>
+                    <script src="/js/scripts.js"></script>
 
             </body>
 
