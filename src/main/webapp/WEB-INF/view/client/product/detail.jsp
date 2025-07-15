@@ -34,6 +34,13 @@
 
                     <!-- Template Stylesheet -->
                     <link href="/client/css/style.css" rel="stylesheet">
+
+                    <meta name="_csrf" content="${_csrf.token}" />
+                    <!-- default header name is X-CSRF-TOKEN -->
+                    <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+                        rel="stylesheet">
                 </head>
 
                 <body>
@@ -103,21 +110,20 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <form action="/add-product-from-view-detail" method="post"
-                                                modelAttribute="product">
-                                                <input type="hidden" name="${_csrf.parameterName}"
-                                                    value="${_csrf.token}" />
-                                                <input class="form-control d-none" type="text" value="${product.id}"
-                                                    name="id" />
+                                            <!-- <form action="/add-product-from-view-detail" method="post"
+                                                modelAttribute="product"> -->
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <input class="form-control d-none" type="text" value="${product.id}"
+                                                name="id" />
 
-                                                <input class="form-control d-none" type="text" name="quantity"
-                                                    id="cartDetails0.quantity" />
-                                                <button
-                                                    class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                    Add to cart
-                                                </button>
-                                            </form>
+                                            <input class="form-control d-none" type="text" name="quantity"
+                                                id="cartDetails0.quantity" value="1" />
+                                            <button data-product-id="${product.id}"
+                                                class="btnAddToCartDetail btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
+                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                Add to cart
+                                            </button>
+                                            <!-- </form> -->
 
                                         </div>
                                         <div class="col-lg-12">
@@ -140,74 +146,78 @@
 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-xl-3">
-                                        <div class="row g-4 fruite">
-                                            <div class="col-lg-12">
 
-                                                <div class="mb-4">
-                                                    <h4>Categories</h4>
-                                                    <ul class="list-unstyled fruite-categorie">
-                                                        <li>
-                                                            <div class="d-flex justify-content-between fruite-name">
-                                                                <a href="#"><i
-                                                                        class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                                <span>(3)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="d-flex justify-content-between fruite-name">
-                                                                <a href="#"><i
-                                                                        class="fas fa-apple-alt me-2"></i>Dell</a>
-                                                                <span>(5)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="d-flex justify-content-between fruite-name">
-                                                                <a href="#"><i
-                                                                        class="fas fa-apple-alt me-2"></i>Asus</a>
-                                                                <span>(2)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="d-flex justify-content-between fruite-name">
-                                                                <a href="#"><i
-                                                                        class="fas fa-apple-alt me-2"></i>Acer</a>
-                                                                <span>(8)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="d-flex justify-content-between fruite-name">
-                                                                <a href="#"><i
-                                                                        class="fas fa-apple-alt me-2"></i>Lenovo</a>
-                                                                <span>(5)</span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-xl-3">
+                                    <div class="row g-4 fruite">
+                                        <div class="col-lg-12">
+
+                                            <div class="mb-4">
+                                                <h4>Categories</h4>
+                                                <ul class="list-unstyled fruite-categorie">
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
+                                                            <span>(3)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Dell</a>
+                                                            <span>(5)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Asus</a>
+                                                            <span>(2)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Acer</a>
+                                                            <span>(8)</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Lenovo</a>
+                                                            <span>(5)</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <jsp:include page="../layout/footer.jsp" />
-                        <!-- Back to Top -->
-                        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
-                                class="fa fa-arrow-up"></i></a>
+                    </div>
+                    <!-- Single Product End -->
+
+                    <jsp:include page="../layout/footer.jsp" />
 
 
-                        <!-- JavaScript Libraries -->
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                        <script src="/client/lib/easing/easing.min.js"></script>
-                        <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                        <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                        <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+                    <!-- Back to Top -->
+                    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+                            class="fa fa-arrow-up"></i></a>
 
-                        <!-- Template Javascript -->
-                        <script src="/client/js/main.js"></script>
+
+                    <!-- JavaScript Libraries -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="/client/lib/easing/easing.min.js"></script>
+                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
+                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
+                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+
+                    <!-- Template Javascript -->
+                    <script src="/client/js/main.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
                 </body>
 
                 </html>
